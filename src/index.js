@@ -57,6 +57,7 @@ function expressionCalculator(expr) {
             } else if (char == ')') {
                 let elem = stack.pop();
                 let found = false;
+                if(elem == '(') found = true;
                 while (stack.length > 0) {
                     if (elem == '(') {
                         found = true;
@@ -67,7 +68,7 @@ function expressionCalculator(expr) {
 
                 }
                 if (stack.length == 0 && !found) {
-                   throw 'ExpressionError: Brackets must be paired';
+                    throw 'ExpressionError: Brackets must be paired';
                 }
             }
         }
