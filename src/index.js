@@ -55,35 +55,24 @@ function expressionCalculator(expr) {
             } else if (char == '(') {
                 stack.push(char);
             } else if (char == ')') {
-                // let elem = stack.pop();
-                // let found = false;
-                // if(elem == '(') found = true;
-                // while (stack.length > 0) {
-                //     if (elem == '(') {
-                //         found = true;
-                //         break;
-                //     }
-                //     string += elem + ' ';
-                //     elem = stack.pop();
-                //
-                // }
                 let elem;
                 let found = false;
                 while (stack.length > 0) {
                     elem = stack.pop();
-                    if(elem == '(') {
+                    if (elem == '(') {
                         found = true;
-                        break
+                        break;
                     }
                     string += elem + ' ';
                 }
                 if (stack.length == 0 && !found) {
-                    throw 'ExpressionError: Brackets must be paired';
+                    console.log(expr);
+                    throw new Error('ExpressionError: Brackets must be paired');
                 }
             }
         }
     }
-    if (stack.includes('(') || stack.includes(')')) throw 'ExpressionError: Brackets must be paired';
+    if (stack.includes('(') || stack.includes(')')) throw new Error('ExpressionError: Brackets must be paired');
     let temp = stack.length;
     for (let i = 0; i < temp; i++) {
         string += stack.pop() + ' ';
@@ -107,7 +96,6 @@ let evaluate = (expr) => {
     return stack.pop();
 };
 
-console.log(expressionCalculator('1 + 2) * 3'));
 // console.log(evaluate(expressionCalculator('( 6 + 10 - 4 ) / ( 1 + 1 * 2 ) + 1').trim()));
 
 module.exports = {
