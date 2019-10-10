@@ -55,17 +55,27 @@ function expressionCalculator(expr) {
             } else if (char == '(') {
                 stack.push(char);
             } else if (char == ')') {
-                let elem = stack.pop();
+                // let elem = stack.pop();
+                // let found = false;
+                // if(elem == '(') found = true;
+                // while (stack.length > 0) {
+                //     if (elem == '(') {
+                //         found = true;
+                //         break;
+                //     }
+                //     string += elem + ' ';
+                //     elem = stack.pop();
+                //
+                // }
+                let elem;
                 let found = false;
-                if(elem == '(') found = true;
                 while (stack.length > 0) {
-                    if (elem == '(') {
+                    elem = stack.pop();
+                    if(elem == '(') {
                         found = true;
-                        break;
+                        break
                     }
                     string += elem + ' ';
-                    elem = stack.pop();
-
                 }
                 if (stack.length == 0 && !found) {
                     throw 'ExpressionError: Brackets must be paired';
